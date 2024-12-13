@@ -1,0 +1,29 @@
+Tutorial Deploting In Cloud Run
+
+Since the Firestore Collection has been created to store predictions, 
+a cloud storage is created to store models and metadata and then deploy 
+using Cloud Run
+
+1. Clone the repository from local to Google Cloud cloud sheel
+
+2. Install the required libraries
+
+3. Create a venv folder, install in the terminal 
+
+python3 -m venv venv_folder_name
+
+4. Run the command
+
+gcloud services enable run.googleapis.com
+
+docker build -t gcr.io/models-tomato-chili/tanipredict:v1 .
+
+docker push gcr.io/models-tomato-chili/tanipredict:v1
+
+gcloud run deploy tanipredict-service \
+
+--image gcr.io/models-tomato-chili/tanipredict:v1 \
+--region asia-southeast2 \
+--platform managed \
+--allow-unauthenticated \
+--memory 1Gi
